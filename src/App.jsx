@@ -2482,13 +2482,15 @@ useEffect(() => {
     <div
       style={{
         maxWidth: 480,
+        width: '100',
         margin: '0 auto',
         display: 'flex',
         flexDirection: 'column',
         height: '100vh',
         overflow: 'hidden',
         background: th.bg,
-        borderRadius: 24,
+        // borderRadius: 24,
+        
       }}
     >
       {screen === 'splash' && <SplashScreen th={th} />}
