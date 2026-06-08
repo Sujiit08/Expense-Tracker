@@ -2482,7 +2482,7 @@ useEffect(() => {
     <div
       style={{
         maxWidth: 480,
-        width: '100',
+        width: '100%',
         margin: '0 auto',
         display: 'flex',
         flexDirection: 'column',
