@@ -2489,7 +2489,7 @@ useEffect(() => {
         height: '100vh',
         overflow: 'hidden',
         background: th.bg,
-        // borderRadius: 24,
+        borderRadius: 24,
         
       }}
     >
