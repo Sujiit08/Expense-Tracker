@@ -2382,10 +2382,33 @@ export default function App() {
     currency: 'INR',
   });
 
-  useEffect(() => {
-    const t = setTimeout(() => setScreen('auth'), 2600);
-    return () => clearTimeout(t);
-  }, []);
+useEffect(() => {
+  const initApp = async () => {
+    const currentUser = JSON.parse(
+      localStorage.getItem('et_current_user')
+    );
+
+    if (currentUser) {
+      const data = (await sGet(`et_data_${currentUser.id}`)) || {
+        expenses: [],
+        settings: {
+          theme: 'dark',
+          lang: 'en',
+          currency: 'INR',
+        },
+      };
+
+      setUser(currentUser);
+      setExpenses(data.expenses || []);
+      setSettings(data.settings);
+      setScreen('main');
+    } else {
+      setScreen('auth');
+    }
+  };
+
+  setTimeout(initApp, 2000);
+}, []);
 
   const login = async (email, pw) => {
     const users = (await sGet('et_users')) || [];
@@ -2396,6 +2419,7 @@ export default function App() {
       settings: { theme: 'dark', lang: 'en', currency: 'INR' },
     };
     setUser(u);
+    localStorage.setItem('et_current_user', JSON.stringify(u));
     setExpenses(data.expenses || []);
     setSettings(
       data.settings || { theme: 'dark', lang: 'en', currency: 'INR' }
@@ -2412,6 +2436,7 @@ export default function App() {
     const defS = { theme: 'dark', lang: 'en', currency: 'INR' };
     await sSet(`et_data_${u.id}`, { expenses: [], settings: defS });
     setUser(u);
+    localStorage.setItem('et_current_user', JSON.stringify(u));
     setExpenses([]);
     setSettings(defS);
     setScreen('main');
@@ -2419,6 +2444,7 @@ export default function App() {
   };
 
   const logout = () => {
+   localStorage.removeItem('et_current_user');
     setUser(null);
     setExpenses([]);
     setScreen('auth');
