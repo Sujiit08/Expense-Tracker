@@ -2485,7 +2485,7 @@ useEffect(() => {
         margin: '0 auto',
         display: 'flex',
         flexDirection: 'column',
-        minHeight: '100dvh',
+        height: '100vh',
         overflow: 'hidden',
         background: th.bg,
         borderRadius: 24,
