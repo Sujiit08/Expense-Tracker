@@ -1248,6 +1248,7 @@ function AddView({ th, t, currency, onAdd }) {
         display: 'flex',
         flexDirection: 'column',
         gap: 14,
+        overflowX: 'hidden',
       }}
     >
       {/* Amount */}
@@ -1328,6 +1329,7 @@ function AddView({ th, t, currency, onAdd }) {
                 padding: '12px 4px',
                 borderRadius: 14,
                 cursor: 'pointer',
+                minWidth: 0,
                 border: `1.5px solid ${cat === c.id ? c.col : th.br2}`,
                 background: cat === c.id ? c.col + '1A' : th.s1,
                 display: 'flex',
