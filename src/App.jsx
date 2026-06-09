@@ -2407,7 +2407,7 @@ useEffect(() => {
     }
   };
 
- initApp();
+ setTimeout(initApp, 3000);
 }, []);
 
   const login = async (email, pw) => {
